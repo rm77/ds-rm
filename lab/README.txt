@@ -19,4 +19,7 @@ requirements:
 - jalankan docker-compose up -d
 
 
+* mengakses mesin/node
+- buka firefox/chrome, arahkan url ke http://172.16.16.101:8888 (untuk mesin 1)
+- untuk mesin yang lain , sesuaikan dengan alamat IP yang lain 
 
