@@ -20,7 +20,11 @@ requirements:
 
 
 * mengakses mesin/node
-- buka firefox/chrome, arahkan url ke http://172.16.16.101:8888 (untuk mesin 1)
-- untuk mesin yang lain , sesuaikan dengan alamat IP yang lain 
+- buka firefox/chrome, arahkan url ke daftar berikut ini
+	x ds-mesin-1 http://172.16.16.101:8888
+	x ds-mesin-1 http://172.16.16.102:8888
+	x ds-mesin-1 http://172.16.16.103:8888
+	x ds-mesin-1 http://172.16.16.104:8888
+	x ds-mesin-1 http://172.16.16.105:8888
 - didalam mesin yang diakses, terdapat folder work, folder ini merupakan folder yang tersambung di folder work seperti yang ada dalam direktori yang sama dengan docker-compose.yml
 
