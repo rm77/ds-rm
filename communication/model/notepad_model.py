@@ -4,7 +4,8 @@ import os
 
 class Notepad:
     def __init__(self):
-        self.dbfile = 'notepad.db'
+        self.dirname = os.path.dirname(__file__)
+        self.dbfile = f'{self.dirname}/notepad.db'
         self.db = shelve.open(self.dbfile,writeback=True)
     def list(self):
         data = []

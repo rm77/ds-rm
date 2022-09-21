@@ -1,4 +1,5 @@
-import zmq
+import zmq, sys
+
 # ZeroMQ Context
 context = zmq.Context()
 
