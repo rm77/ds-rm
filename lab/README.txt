@@ -22,9 +22,9 @@ requirements:
 * mengakses mesin/node
 - buka firefox/chrome, arahkan url ke daftar berikut ini
 	x ds-mesin-1 http://172.16.16.101:8888
-	x ds-mesin-1 http://172.16.16.102:8888
-	x ds-mesin-1 http://172.16.16.103:8888
-	x ds-mesin-1 http://172.16.16.104:8888
-	x ds-mesin-1 http://172.16.16.105:8888
+	x ds-mesin-2 http://172.16.16.102:8888
+	x ds-mesin-3 http://172.16.16.103:8888
+	x ds-mesin-4 http://172.16.16.104:8888
+	x ds-mesin-5 http://172.16.16.105:8888
 - didalam mesin yang diakses, terdapat folder work, folder ini merupakan folder yang tersambung di folder work seperti yang ada dalam direktori yang sama dengan docker-compose.yml
 
