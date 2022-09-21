@@ -2,81 +2,68 @@ version: '2'
 services:
   #mesin1 -- copykan untuk mesin 2,3, dst
   mesin1:
+    network_mode : host
     container_name: ds-mesin-1
     image: jupyter/scipy-notebook
     user: root
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
+      - "JPORT=34001"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
     command: "sh /script/run.sh"
-    networks:
-      ds-network:
-        ipv4_address: 172.16.16.101
   mesin2:
     container_name: ds-mesin-2
+    network_mode : host
     image: jupyter/scipy-notebook
     user: root
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
+      - "JPORT=34002"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
     command: "sh /script/run.sh"
-    networks:
-      ds-network:
-        ipv4_address: 172.16.16.102
   mesin3:
     container_name: ds-mesin-3
+    network_mode : host
     image: jupyter/scipy-notebook
     user: root
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
+      - "JPORT=34003"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
     command: "sh /script/run.sh"
-    networks:
-      ds-network:
-        ipv4_address: 172.16.16.103
   mesin4:
     container_name: ds-mesin-4
+    network_mode : host
     image: jupyter/scipy-notebook
     user: root
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
+      - "JPORT=34004"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
     command: "sh /script/run.sh"
-    networks:
-      ds-network:
-        ipv4_address: 172.16.16.104
   mesin5:
     container_name: ds-mesin-5
+    network_mode : host
     image: jupyter/scipy-notebook
     user: root
     environment:
       - "DOCKER_STACKS_JUPYTER_CMD=lab"
       - "GRANT_SUDO=yes"
+      - "JPORT=34005"
     volumes:
       - ./work:/home/jovyan/work
       - ./script:/script
     command: "sh /script/run.sh"
-    networks:
-      ds-network:
-        ipv4_address: 172.16.16.105
 
-networks:
-  ds-network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-       - subnet: 172.16.16.0/24
-         gateway: 172.16.16.1

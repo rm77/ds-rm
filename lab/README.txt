@@ -27,3 +27,12 @@ requirements:
 	x ds-mesin-5 http://172.16.16.105:8888
 - didalam mesin yang diakses, terdapat folder work, folder ini merupakan folder yang tersambung di folder work seperti yang ada dalam direktori yang sama dengan docker-compose.yml
 
+* NETWORK mode
+- agar dapat diakses dari internet, gunakan docker-compose-host.yml
+- docker-compose -f docker-compose-host.yml up -d
+- mesin akan dijalankan dengan url sebagai berikut
+	x ds-mesin-1 http://0.0.0.0:34001
+	x ds-mesin-2 http://0.0.0.0:34002
+	x ds-mesin-3 http://0.0.0.0:34003
+	x ds-mesin-4 http://0.0.0.0:34004
+	x ds-mesin-5 http://0.0.0.0:34005
