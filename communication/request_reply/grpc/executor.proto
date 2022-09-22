@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package executor;
+
+service Executor {
+  // A Bidirectional streaming RPC.
+  //
+  // Accepts a stream of Message sent while a route is being traversed,
+   rpc GetServerResponse(stream Message) returns (stream Message) {}
+}
+
+message Message {
+  string message = 1;
+}
+
+//generate RPC stub using the following
+//python -m grpc_tools.protoc --proto_path=.  ./executor.proto --python_out=. --grpc_python_out=.
