@@ -1,4 +1,3 @@
-from jsonrpc import JSONRPCResponseManager, dispatcher
 import shelve
 import uuid
 import os
