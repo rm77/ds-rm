@@ -5,11 +5,11 @@ from datetime import datetime
 import time
 
 
-class BankOperasi:
+class BankOperasi(object):
     def __init__(self):
         self.nasabah={}
     def version(self):
-        return 'v1.0'
+        return 'bank-v1.0'
     def transfer(self,asal='',tujuan='',amount=0):
         if (amount==0):
             return False
@@ -18,13 +18,20 @@ class BankOperasi:
             self.nasabah[tujuan].deposit(amount,f"transfer dari {asal}")
 
 
-class Account:
-    def __init__(self,nama):
+class Account(object):
+    def __init__(self):
+        pass
+
+    def setAccount(self,nama='default'):
         self.dbfile=nama+'_account.db'
         self.db = shelve.open(self.dbfile,writeback=True)
         if len(self.db)==0:
             self.deposit(0,'saldo awal')
         self.nama = nama
+        return True
+    def version(self):
+        return 'account-v1.0'
+
     def getinfo(self):
         info = f"nama akun : {self.nama} balance: {self.getsaldo()}"
         return info
