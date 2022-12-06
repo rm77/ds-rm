@@ -1,17 +1,29 @@
 import shelve
 import uuid
 import os
+import json
 from datetime import datetime
 import time
 
 
-class BankOperasi(object):
+class Bank(object):
     def __init__(self):
         self.nasabah={}
+    def register_nasabah(self,nama=None):
+        if (nama is None):
+            return False
+        self.nasabah[nama]=Account(nama)
+        return True
+    def get_nasabah(self,nama=''):
+        if (nama not in self.nasabah.keys()):
+            return False
+        return self.nasabah[nama]
     def version(self):
         return 'bank-v1.0'
     def transfer(self,asal='',tujuan='',amount=0):
         if (amount==0):
+            return False
+        if (asal not in self.nasabah.keys()):
             return False
         if ((asal in self.nasabah) and (tujuan in self.nasabah)):
             self.nasabah[asal].withdraw(amount,f"transfer ke {tujuan}")
@@ -19,9 +31,8 @@ class BankOperasi(object):
 
 
 class Account(object):
-    def __init__(self):
-        pass
-
+    def __init__(self,nama='default'):
+        self.setAccount(nama)
     def setAccount(self,nama='default'):
         self.dbfile=nama+'_account.db'
         self.db = shelve.open(self.dbfile,writeback=True)
@@ -31,7 +42,6 @@ class Account(object):
         return True
     def version(self):
         return 'account-v1.0'
-
     def getinfo(self):
         info = f"nama akun : {self.nama} balance: {self.getsaldo()}"
         return info
@@ -77,35 +87,39 @@ class Account(object):
 
 
 if __name__=='__main__':
-    a = Account('royyana')
-    a.deposit(1000,'deposit awal')
-    a.withdraw(10,'ambil')
-    print(a.gethistory())
-    print(a.getsaldo())
-
-    b = Account('ibrahim')
-    b.deposit(1000,'deposit awal')
-    b.withdraw(900,'ambil')
-    print(b.gethistory())
-    print(b.getsaldo())
-
-    c = Account('ananda')
-    c.deposit(1000,'deposit awal')
-    c.withdraw(500,'ambil')
-    print(c.gethistory())
-    print(c.getsaldo())
+    b1 = Bank()
+    b1.register_nasabah('user1')
+    b1.register_nasabah('user2')
 
 
 
-    t = BankOperasi()
-    t.nasabah['royyana']=a
-    t.nasabah['ibrahim']=b
-    t.nasabah['ananda']=c
-    t.transfer('royyana','ananda',100)
-    t.transfer('ananda','ibrahim',10)
+    b2 = Bank()
+    b2.register_nasabah('user3')
+    b2.register_nasabah('user4')
+
+
+    b1.get_nasabah('user1').deposit(1000,'deposit awal')
+    b1.get_nasabah('user1').withdraw(100,'ambil 100')
+
+
+    b1.get_nasabah('user2').deposit(1000,'deposit awal')
+
+
+    b1.transfer('user1','user2',100)
+    b2.transfer('user3','user4',10)
 
 
     print('----------------------')
-    print(a.gethistory())
-    print(b.gethistory())
-    print(c.gethistory())
+    try:
+        print(b1.get_nasabah('user1').gethistory())
+        print(b1.get_nasabah('user2').gethistory())
+
+        print(b2.get_nasabah('user3').gethistory())
+        print(b2.get_nasabah('user4').gethistory())
+
+        #not found
+        print(b1.get_nasabah('user3').gethistory())
+
+
+    except Exception as ee:
+        print(str(ee))
